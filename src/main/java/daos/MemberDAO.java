@@ -6,7 +6,7 @@ public class MemberDAO {
     private Integer memberId;
     private String firstName;
     private String lastName;
-    private Integer birthYear;
+    private Short birthYear;
     private Date joinDate;
     private Date leaveDate;
     private Integer positionId;
@@ -39,11 +39,11 @@ public class MemberDAO {
         this.lastName = lastName;
     }
 
-    public Integer getBirthYear() {
+    public Short getBirthYear() {
         return birthYear;
     }
 
-    public void setBirthYear(Integer birthYear) {
+    public void setBirthYear(Short birthYear) {
         this.birthYear = birthYear;
     }
 

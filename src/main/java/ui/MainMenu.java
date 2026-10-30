@@ -1,8 +1,10 @@
 package ui;
 
 import database.StructureDB;
-import dtos.HockeyClub;
+import dtosJSON.HockeyClub;
+import dtosUI.MemberUI;
 import myLib.UserMethods;
+import services.MemberServices;
 import tools.jackson.databind.ObjectMapper;
 
 import java.nio.file.Path;
@@ -20,7 +22,7 @@ public class MainMenu {
             userMethods.myPrinter("Choose an option: ");
             userMethods.myPrinter("1. Read JSON file using Jackson");
             userMethods.myPrinter("2. Create data base");
-            userMethods.myPrinter("3. ");
+            userMethods.myPrinter("3. Insert new member");
             userMethods.myPrinter("0. Exit.");
             processOption(requestOption());
         }while(!exitMenu);
@@ -44,6 +46,16 @@ public class MainMenu {
                 //userMethods.myPrinter(structureDB.createDB("CHRuben"));
                 userMethods.myPrinter(structureDB.createTables());
             } case "3" -> {
+                MemberUI newMember = new MemberUI();
+                MemberServices memberServices = new MemberServices();
+                userMethods.myPrinter("Introduce the data of the new member:\n");
+                newMember.setFirstName(userMethods.requestString("First name: \n"));
+                newMember.setLastName(userMethods.requestString("Last name: \n"));
+                newMember.setBirthYear(userMethods.requestInteger("Birth year: \n"));
+                newMember.setJoinDate(userMethods.requestDate("Join date: \n"));
+                newMember.setPosition(userMethods.requestString("Playing position: \n"));
+                newMember.setCategory(userMethods.requestString("Category: "));
+                userMethods.myPrinter(memberServices.insertNewMember(newMember));
             }
 
             default -> userMethods.myPrinter("Wrong option.");

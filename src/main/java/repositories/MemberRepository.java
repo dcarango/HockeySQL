@@ -14,9 +14,10 @@ import java.sql.SQLException;
 
 public class MemberRepository {
 
+    //este repositorio me permite hacer las operaciones CRUD del DAO MemberDAO en la tabla member
     public boolean createMember(MemberDAO newmeMember) {
         boolean insertOk = false;
-        String sql = "INSERT INTO `members` ("
+        String sql = "INSERT INTO `member` ("
                 + "  `first_name`, `last_name`, `birth_year`, "
                 + "  `join_date`, `leave_date`, `position_id`, `category_id`"
                 + ") VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -33,7 +34,7 @@ public class MemberRepository {
             statement.setInt(6,newmeMember.getPositionId());
             statement.setInt(7,newmeMember.getCategoryId());
 
-            statement.executeUpdate(sql);
+            statement.executeUpdate();
 
             insertOk = true;
         } catch (SQLException e) {
